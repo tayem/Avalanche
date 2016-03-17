@@ -1,16 +1,17 @@
+import Player as P;
 def setup():
     
     fullScreen();
     colorMode(RGB,255,255,255);
     background(0,0,0);
+    player1 = P.Player(displayWidth/2, displayHeight/1.03, 100,100);
     return None;
 def draw():
     
-    player = rect(displayWidth/2, displayHeight/1.03, 30,30);
+    player1.Draw();
     return None;
 
 def keyPressed():
-    if key == UP:
-        
-    elif key == DOWN:
+
+    return None;
         
