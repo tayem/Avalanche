@@ -1,7 +1,7 @@
 import Player as P;
 player1 = P.Player(450, 700, 70,70);
 keys = [False,False,False,False, False];
-level = 5;
+level = 1;
 def setup():
     frameRate(60);
     size(1000,800);
@@ -11,16 +11,49 @@ def setup():
     return None;
 def draw():
     global level;
+    numTrue = 0;
     background(0,0,0);
     global player1;
+    
     if keys[0] == True:
-        player1.move(0,4+level);
+        for i in keys:
+            if i == True:
+                numTrue += 1;
+        if numTrue > 1:
+            player1.speed = 2.5;
+        else:
+            player1.speed = 4;
+        player1.move(0,player1.speed + level);
+        
     if keys[1] == True:
-        player1.move(0,-4-level);
+        for i in keys:
+            if i == True:
+                numTrue += 1;
+        if numTrue > 1:
+            player1.speed = 2.5;
+        else:
+            player1.speed = 4;
+        player1.move(0,-player1.speed - level);
+        
     if keys[2] == True:
-        player1.move(-4-level,0);
+        for i in keys:
+            if i == True:
+                numTrue += 1;
+        if numTrue > 1:
+            player1.speed = 2.5;
+        else:
+            player1.speed = 4;
+        player1.move(-player1.speed - level,0);
+        
     if keys[3] == True:
-        player1.move(4+level,0);
+        for i in keys:
+            if i == True:
+                numTrue += 1;
+        if numTrue > 1:
+            player1.speed = 2.5;
+        else:
+            player1.speed = 4;
+        player1.move(player1.speed + level,0);
     player1.drawSelf();
     test = 2;
     return None;

@@ -6,6 +6,7 @@ class Player:
         self.Height = Height;
         self.isHit = False;
         self.powers = [];
+        self.speed = 4;
     def drawSelf(self):
         rect(self.X, self.Y, self.Width, self.Height);
     def move(self, dX, dY):
