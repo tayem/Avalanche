@@ -1,17 +1,17 @@
 import State;
 keys = [False,False,False,False, False];
 import GameState;
-x = GameState.GameState(keys);
+currentState = GameState.GameState(keys);
 def setup():
     frameRate(60);
-    size(1000,800);
+    size(1200,800);
     smooth();
     colorMode(RGB,255,255,255);
     background(0,0,0);
     return None;
 
 def draw():
-    x.draw();
+    currentState.draw();
     return None;
 
 def keyPressed():
