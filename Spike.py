@@ -14,9 +14,13 @@ class Spike():
         triangle(self.X1, self.Y1, self.X2, self.Y2, self.X3, self.Y3); 
         if self.Y1 > 800:
             newY = random.randint(-200, -50);
+            newX = random.randint(0, 1000);
             self.Y1 = newY;
             self.Y2 = newY;
             self.Y3 = newY + 45;
+            self.X1 = newX;
+            self.X2 = newX + 10;
+            self.X3 = newX + 5;
         self.Y1 += self.speed;
         self.Y2 += self.speed;
         self.Y3 += self.speed;
