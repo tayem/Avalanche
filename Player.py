@@ -16,7 +16,7 @@ class Player:
         self.keys = keys;
         self.numTrue = 0;
         self.lives = 3;
-        self.points = 0;
+        self.points = 1;
     def draw(self):
         moveDist = self.getPlayerSpeed();
          # Player pressed up arrow

@@ -3,11 +3,18 @@ import Player;
 import Spike;
 import random;
 import time;
+import Coin;
 timer = 0;
 class GameState(State.State):
     def __init__(self, keys, player):
         global spikes;
+        global powerups;
+        global coins;
+        global coinAdded;
+        coinAdded = False;
         spikes = [];
+        powerups = [];
+        coins = [];
         for i in range(20):
             spikes.append(Spike.Spike(i*-200, 5));
         return None;
@@ -33,4 +40,9 @@ class GameState(State.State):
         player.draw();
         if frameCount % 60 == 0:
             player.points += 1;
+        if player.points % 6 == 0 and coinAdded == False:
+            coins.append(Coin.Coin());
+            coinAdded = True;
+        for aCoin in coins:
+            aCoin.draw();
         return None;

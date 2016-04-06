@@ -54,7 +54,7 @@ def keyReleased():
     return None;
 
 def checkState(player):
-    if player.points == 0:
+    if player.points == 1:
         return 0;
     elif player.lives > 0:
         return 1;
