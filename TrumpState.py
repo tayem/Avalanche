@@ -4,7 +4,7 @@ import Spike;
 import random;
 import time;
 timer = 0;
-class GameState(State.State):
+class TrumpState(State.State):
     def __init__(self, keys, player):
         global spikes;
         spikes = [];

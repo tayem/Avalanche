@@ -11,12 +11,12 @@ class Player:
         self.Y = Y;
         self.Width = 70;
         self.Height = 70;
-        self.isHit = False;
         self.powers = [];
         self.speed = 8;
         self.keys = keys;
         self.numTrue = 0;
         self.lives = 3;
+        self.points = 0;
     def draw(self):
         moveDist = self.getPlayerSpeed();
          # Player pressed up arrow
@@ -44,9 +44,9 @@ class Player:
             if i == True:
                 numTrue += 1;
         if numTrue > 1:
-            speed = sin(pi/4) * 5;
+            speed = sin(pi/4) * 8;
         else:
-            speed = 5;
+            speed = 8;
 
         self.speed = speed;
         return speed;

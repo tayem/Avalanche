@@ -1,7 +1,14 @@
 import State;
 keys = [False,False,False,False, False];
 import GameState;
-currentState = GameState.GameState(keys);
+import GameOverState;
+import IntroState;
+import TrumpState;
+currentState = 0;
+import Player;
+player = Player.Player(450, 700, keys);
+stateList = [IntroState.IntroState(keys), GameState.GameState(keys,player), GameOverState.GameOverState(keys,player), TrumpState.TrumpState(keys,player)];
+
 def setup():
     frameRate(60);
     size(1200,800);
@@ -11,7 +18,13 @@ def setup():
     return None;
 
 def draw():
-    currentState.draw();
+    global player;
+    global stateList;
+    currentState = stateList[checkState(player)];
+    if currentState == stateList[0]:
+        if currentState.moveToGame(keys) == True:
+            currentState = stateList[1];
+    currentState.draw(player);
     return None;
 
 def keyPressed():
@@ -23,7 +36,7 @@ def keyPressed():
         keys[2] = True;
     if keyCode == RIGHT:
         keys[3] = True;
-    if keyCode == BACKSPACE:
+    if key == " ":
         keys[4] = True;
     return None;
 
@@ -36,6 +49,16 @@ def keyReleased():
         keys[2] = False;
     if keyCode == RIGHT:
         keys[3] = False;
-    if keyCode == BACKSPACE:
+    if key == " ":
         keys[4] = False;
     return None;
+
+def checkState(player):
+    if player.points == 0:
+        return 0;
+    elif player.lives > 0:
+        return 1;
+    elif player.lives == 0:
+        return 2;
+    elif player.points > 100:
+        return 3;
