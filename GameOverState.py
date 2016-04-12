@@ -8,4 +8,4 @@ class GameOverState(State.State):
         fill(255,255,255);
         rect(400,400, 200,100);
         fill(0,0,0);
-        text("You lost!", 500, 450);
+        text("You lost!", 405, 450);

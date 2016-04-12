@@ -17,6 +17,7 @@ class Player:
         self.numTrue = 0;
         self.lives = 3;
         self.points = 1;
+        
     def draw(self):
         moveDist = self.getPlayerSpeed();
          # Player pressed up arrow
@@ -32,7 +33,9 @@ class Player:
         if self.keys[3] == True:        
             self.move(moveDist, 0);
         fill(0,0,255);
-        rect(self.X,self.Y,self.Width,self.Height);
+        imageMode(CORNER);
+        sprite = loadImage("sq6-1.png");
+        image(sprite, self.X,self.Y,self.Width,self.Height);
         return None;
         
     def getPlayerSpeed(self):
