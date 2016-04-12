@@ -6,15 +6,25 @@ import IntroState;
 import TrumpState;
 currentState = 0;
 import Player;
-player = Player.Player(450, 700, keys);
-stateList = [IntroState.IntroState(keys), GameState.GameState(keys,player), GameOverState.GameOverState(keys,player), TrumpState.TrumpState(keys,player)];
-
+import Coin;
 def setup():
     frameRate(60);
     size(1200,800);
     smooth();
     colorMode(RGB,255,255,255);
     background(0,0,0);
+    global sprite;
+    sprite = loadImage("sq6-1.png");
+    global coinSprite; 
+    coinSprite = loadImage("coin.png");
+    global player;
+    player = Player.Player(450, 700, keys, sprite);
+    global coins;
+    coins = [Coin.Coin(coinSprite), Coin.Coin(coinSprite)];
+    global backgroundSprite;
+    backgroundSprite = loadImage("background.jpg");
+    global stateList;
+    stateList = [IntroState.IntroState(keys, backgroundSprite), GameState.GameState(keys,player, coins, coinSprite), GameOverState.GameOverState(keys,player), TrumpState.TrumpState(keys,player)];
     return None;
 
 def draw():

@@ -6,7 +6,7 @@ numTrue = 0;
 global speed;
 speed = 0;
 class Player:
-    def __init__(self, X, Y, keys):
+    def __init__(self, X, Y, keys, sprite):
         self.X = X;
         self.Y = Y;
         self.Width = 70;
@@ -17,7 +17,7 @@ class Player:
         self.numTrue = 0;
         self.lives = 3;
         self.points = 1;
-        
+        self.sprite = sprite;
     def draw(self):
         moveDist = self.getPlayerSpeed();
          # Player pressed up arrow
@@ -34,8 +34,7 @@ class Player:
             self.move(moveDist, 0);
         fill(0,0,255);
         imageMode(CORNER);
-        sprite = loadImage("sq6-1.png");
-        image(sprite, self.X,self.Y,self.Width,self.Height);
+        image(self.sprite, self.X,self.Y,self.Width,self.Height);
         return None;
         
     def getPlayerSpeed(self):

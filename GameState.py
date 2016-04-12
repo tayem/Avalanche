@@ -5,16 +5,16 @@ import random;
 import time;
 import Coin;
 class GameState(State.State):
-    def __init__(self, keys, player):
+    def __init__(self, keys, player, coins, coinSprite):
         global spikes;
         global powerups;
-        global coins;
+        self.coins = coins;
+        self.coinSprite = coinSprite;
         self.coinAdded = False;
         self.timer = 1;
         spikes = [];
         powerups = [];
-        coins = [Coin.Coin(), Coin.Coin()];
-        for i in range(20):
+        for i in range(15):
             spikes.append(Spike.Spike(i*-200, 5));
         return None;
     def draw(self, player):
@@ -42,16 +42,17 @@ class GameState(State.State):
             player.points += 1;
             for aSpike in spikes:
                 aSpike.speed += 0.3;
-        if player.points % 5 == 0:
-            for aCoin in coins:
-                aCoin.draw();
-        for aCoin in coins:
+        
+        for aCoin in self.coins:
             detect1 = aCoin.hitDetect(aCoin.X, aCoin.Y, player);
             detect2 = aCoin.hitDetect(aCoin.X+70, aCoin.Y, player);
             detect3 = aCoin.hitDetect(aCoin.X, aCoin.Y+70, player);
             detect4 = aCoin.hitDetect(aCoin.X+70, aCoin.Y+70, player);
             if detect1 or detect2 or detect3 or detect4:
                 player.points += 10;
-                coins.remove(aCoin);
-                coins.append(Coin.Coin());
+                self.coins.remove(aCoin);
+                self.coins.append(Coin.Coin(self.coinSprite));
+        if player.points % 5 == 0:
+            for aCoin in self.coins:
+                aCoin.draw();
         return None;
