@@ -2,9 +2,14 @@ import PowerUp;
 import random;
 class Coin(PowerUp.PowerUp):
     def __init__(self):
+        self.X = random.randint(0,950);
+        self.Y = random.randint(100, 700);
         return None;
     def draw(self):
-        locationX = random.randint(0,950);
-        locationY = random.randint(100, 700);
         coin = loadImage("coin.png");
-        image(coin, locationX, locationY, 70, 70);
+        image(coin, self.X, self.Y, 70, 70);
+    def hitDetect(self, X, Y, player):
+        if player.X < X < player.X+player.Width and player.Y < Y < player.Y+player.Height:
+            return True;
+        else:
+            return False;

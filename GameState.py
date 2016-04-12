@@ -13,7 +13,7 @@ class GameState(State.State):
         self.timer = 1;
         spikes = [];
         powerups = [];
-        coins = [];
+        coins = [Coin.Coin(), Coin.Coin()];
         for i in range(20):
             spikes.append(Spike.Spike(i*-200, 5));
         return None;
@@ -40,9 +40,18 @@ class GameState(State.State):
         if frameCount % 60 == 0:
             self.timer += 1;
             player.points += 1;
-        if player.points % 5 == 0 and self.coinAdded == False:
-            coins.append(Coin.Coin());
-            self.coinAdded = True;
-            
-        print coins;
+            for aSpike in spikes:
+                aSpike.speed += 0.3;
+        if player.points % 5 == 0:
+            for aCoin in coins:
+                aCoin.draw();
+        for aCoin in coins:
+            detect1 = aCoin.hitDetect(aCoin.X, aCoin.Y, player);
+            detect2 = aCoin.hitDetect(aCoin.X+70, aCoin.Y, player);
+            detect3 = aCoin.hitDetect(aCoin.X, aCoin.Y+70, player);
+            detect4 = aCoin.hitDetect(aCoin.X+70, aCoin.Y+70, player);
+            if detect1 or detect2 or detect3 or detect4:
+                player.points += 10;
+                coins.remove(aCoin);
+                coins.append(Coin.Coin());
         return None;
